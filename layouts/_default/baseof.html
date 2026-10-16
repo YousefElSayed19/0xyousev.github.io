@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}})();</script>
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+{{ partial "header.html" . }}
+<main>{{ block "main" . }}{{ end }}</main>
+{{ partial "footer.html" . }}
+<script src="{{ "js/theme.js" | relURL }}"></script>
+</body>
+</html>

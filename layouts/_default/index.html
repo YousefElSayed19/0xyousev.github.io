@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="intro">
+  {{ with site.Params.avatar }}<img class="avatar" src="{{ . | relURL }}" alt="" width="96" height="96">{{ end }}
+  <h1>{{ site.Params.name }}</h1>
+  <p class="tagline">{{ site.Params.tagline }}</p>
+  {{ .Content }}
+</section>
+<section>
+  <h2>Recent writing</h2>
+  {{ $posts := where site.RegularPages "Section" "in" (slice "writeups" "blogs") }}
+  {{ with $posts.ByDate.Reverse }}
+    {{ partial "postlist.html" (first 5 .) }}
+    <p><a href="{{ "writeups/" | relURL }}">All write-ups</a></p>
+  {{ else }}
+    <p class="empty">No posts yet. Add a Markdown file to content/writeups to publish the first one.</p>
+  {{ end }}
+</section>
+{{ end }}

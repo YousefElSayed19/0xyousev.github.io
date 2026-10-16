@@ -1,0 +1,6 @@
+<footer class="site-footer">
+  <ul class="socials">
+    {{ range site.Params.socials }}<li><a href="{{ .url }}" rel="me noopener" target="_blank">{{ .name }}</a></li>{{ end }}
+  </ul>
+  <p>&copy; {{ now.Year }} {{ site.Params.name }}</p>
+</footer>

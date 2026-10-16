@@ -1,0 +1,9 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+{{ with .Pages.ByDate.Reverse }}
+  {{ partial "postlist.html" . }}
+{{ else }}
+  <p class="empty">Nothing here yet.</p>
+{{ end }}
+{{ end }}

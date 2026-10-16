@@ -1,0 +1,7 @@
+<header class="site-header">
+  <a class="brand" href="{{ "/" | relURL }}">{{ site.Params.handle }}</a>
+  <nav aria-label="Main">
+    {{ range site.Menus.main }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}
+    <button id="theme-toggle" type="button" aria-label="Toggle light or dark theme">Theme</button>
+  </nav>
+</header>

@@ -1,0 +1,50 @@
+baseURL = "https://yousefelsayed19.github.io/"
+languageCode = "en"
+title = "Yousef ElSayed"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  name = "Yousef ElSayed"
+  handle = "0xyousev"
+  tagline = "Penetration tester. I write down what I break and what I learn."
+  description = "Write-ups, projects and notes from Yousef ElSayed, a penetration tester and CTF creator."
+  # avatar = "avatar.webp"   # put the image in /static and uncomment
+
+  [[params.socials]]
+    name = "GitHub"
+    url = "https://github.com/YousefElSayed19"
+  [[params.socials]]
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/yousefelsayed20/"
+  [[params.socials]]
+    name = "TryHackMe"
+    url = "https://tryhackme.com/p/0xyousev"
+  [[params.socials]]
+    name = "Hack The Box"
+    url = "https://profile.hackthebox.com/profile/019cd2d1-2f7c-7206-a119-8d3d43894530"
+
+[menus]
+  [[menus.main]]
+    name = "Writeups"
+    url = "/writeups/"
+    weight = 1
+  [[menus.main]]
+    name = "Blog"
+    url = "/blogs/"
+    weight = 2
+  [[menus.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 3
+  [[menus.main]]
+    name = "About"
+    url = "/about/"
+    weight = 4
+
+[markup.highlight]
+  noClasses = true
+  style = "dracula"
+  lineNos = false
+[markup.goldmark.renderer]
+  unsafe = true
