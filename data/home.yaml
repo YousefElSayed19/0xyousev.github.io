@@ -4,7 +4,7 @@ terminal:
   - cmd: cat focus.txt
     out: web | api | mobile | active-directory | cloud | llm
   - cmd: ls ~/challenges
-    out: rest-graphql-grpc/  vaultcorp-ssrf-to-rce/
+    out: aegis/  vaultcorp/  nexawallet/  dual-check/
   - cmd: echo $STATUS
     out: breaking things, writing them down
 
@@ -12,9 +12,9 @@ highlights:
   - label: TryHackMe
     text: Top 1%
   - label: CTF design
-    text: Hard-rated challenge across REST, GraphQL and gRPC
+    text: 4 challenges built, across web, API, mobile and reverse engineering
   - label: OpenLabs
-    text: Submitted the VaultCorp SSRF-to-RCE web lab
+    text: Lab proposals submitted to Duckurity's OpenLabs
 
 focus:
   - title: Web and API

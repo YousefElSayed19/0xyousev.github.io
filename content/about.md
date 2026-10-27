@@ -18,7 +18,7 @@ I'm a student, and I learn mostly by breaking things in CTFs and security labs, 
 
 ## CTFs and challenge design
 
-I play CTFs across web, network, mobile and API security, and I design them too. I built a hard-rated challenge that spans three API architectures: REST, GraphQL and gRPC. I also contribute labs to [duckurity/openlabs](https://github.com/duckurity/openlabs), including a hard web lab called VaultCorp that chains six real-world vulnerabilities from SSRF to RCE. More on the [projects page](/projects/).
+I play CTFs across web, network, mobile and API security, and I design them too. I've built four challenges that I solved end to end myself: [VaultCorp](/challenges/vaultcorp/), a hard web chain from a client-side leak to SSRF-driven RCE; [Project AEGIS](/challenges/aegis/), a hard API challenge that hides REST, GraphQL and gRPC behind one portal; [NexaWallet](/challenges/nexawallet/), a hard Android crackme that detects Frida; and [dual-check](/challenges/dual-check/), a medium reverse engineering puzzle across two Windows binaries. I've also proposed labs to [duckurity/openlabs](https://github.com/duckurity/openlabs). The full list is on the [challenges page](/challenges/).
 
 On TryHackMe I'm in the top 1%. My handle is `0xyousev` on both TryHackMe and Hack The Box.
 

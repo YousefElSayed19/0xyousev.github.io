@@ -1,0 +1,13 @@
+<div class="cards">
+{{ range $i, $p := (where site.RegularPages "Section" "challenges").ByWeight }}
+  <article class="card link reveal" style="--d:{{ mul $i 70 }}ms">
+    <div class="row">
+      {{ with $p.Params.track }}<span class="tag kind">{{ . }}</span>{{ end }}
+      {{ with $p.Params.difficulty }}<span class="tag diff d-{{ . | lower }}">{{ . }}</span>{{ end }}
+    </div>
+    <h3><a class="stretch" href="{{ $p.RelPermalink }}">{{ $p.Params.short | default $p.Title }}</a></h3>
+    <p>{{ $p.Description }}</p>
+    {{ with $p.Params.stack }}<ul class="chips small">{{ range first 3 . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+  </article>
+{{ end }}
+</div>

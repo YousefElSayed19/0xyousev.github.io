@@ -7,7 +7,7 @@
   if (!modal || !input || !list) return;
 
   var index = null, loading = null, sel = -1, shown = [], lastFocus = null;
-  var labels = { writeups: "write-up", blogs: "blog", cheatsheets: "cheatsheet", page: "page" };
+  var labels = { writeups: "write-up", blogs: "blog", cheatsheets: "cheatsheet", challenges: "challenge", page: "page" };
 
   function load() {
     if (index) return Promise.resolve(index);

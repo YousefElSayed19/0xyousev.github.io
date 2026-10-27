@@ -41,6 +41,12 @@
 {{ end }}
 
 <section>
+  <h2 class="reveal">Challenges I built</h2>
+  {{ partial "challengecards.html" . }}
+  <p class="reveal"><a href="{{ "challenges/" | relURL }}">All challenges</a></p>
+</section>
+
+<section>
   <h2 class="reveal">Latest writing</h2>
   {{ $posts := where site.RegularPages "Section" "in" (slice "writeups" "blogs" "cheatsheets") }}
   {{ with $posts.ByDate.Reverse }}

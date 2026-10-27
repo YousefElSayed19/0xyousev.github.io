@@ -4,16 +4,9 @@ description: "Security labs, CTF challenges and web projects by Yousef ElSayed."
 ---
 ## Security
 
-{{< cards >}}
-{{< project name="VaultCorp lab" url="https://github.com/duckurity/openlabs" tags="Web, ASP.NET Core, SSRF, RCE, Hard" >}}
-A hard web lab for duckurity/openlabs, at `labs/web/vaultcorp/`. It is a fictional cloud-backup SaaS built on ASP.NET Core where the player chains six real-world vulnerabilities from SSRF to RCE.
-{{< /project >}}
-{{< project name="REST, GraphQL and gRPC CTF challenge" tags="API, Hard, CTF" >}}
-A hard-rated challenge that covers three API architectures in one attack chain, with authentication and authorization flaws and business logic vulnerabilities.
-{{< /project >}}
-{{< /cards >}}
+Four CTF challenges I designed, built and solved myself. Each page covers the idea behind it, what it tests and how it was built, without handing out the solution.
 
-I've also proposed more labs to OpenLabs in the same intake: NexaWallet and a two-binary crackme. Mobile challenges lean on dynamic instrumentation with Frida, and reverse engineering challenges on multi-stage exploitation.
+{{< challenges >}}
 
 ## Web
 

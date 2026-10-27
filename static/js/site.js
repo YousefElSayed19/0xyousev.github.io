@@ -4,6 +4,15 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* ---- swallow benign view-transition rejections (a navigation interrupting another) ---- */
+  ["pagereveal", "pageswap"].forEach(function (ev) {
+    addEventListener(ev, function (e) {
+      var vt = e.viewTransition;
+      if (!vt) return;
+      ["ready", "finished", "updateCallbackDone"].forEach(function (k) { if (vt[k] && vt[k].catch) vt[k].catch(function () {}); });
+    });
+  });
+
   /* ---- reveal on scroll ---- */
   var reveals = $$(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {

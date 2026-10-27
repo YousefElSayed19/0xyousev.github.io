@@ -1,26 +1,30 @@
 {{ define "main" }}
-{{ $isPost := in (slice "writeups" "blogs" "cheatsheets") .Section }}
+{{ $isPost := in (slice "writeups" "blogs" "cheatsheets" "challenges") .Section }}
 <article>
   <h1 class="reveal">{{ .Title }}</h1>
   {{ if $isPost }}
   <p class="meta reveal" style="--d:60ms">
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ if eq .Section "cheatsheets" }}Updated {{ end }}{{ .Date.Format "2 Jan 2006" }}</time>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ if in (slice "cheatsheets" "challenges") .Section }}Updated {{ end }}{{ .Date.Format "2 Jan 2006" }}</time>
     <span>{{ .ReadingTime }} min read</span><span>{{ .WordCount }} words</span>
-    {{ range .GetTerms "tags" }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+    {{ range .GetTerms "tags" }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle | lower }}</a>{{ end }}
   </p>
   {{ end }}
 
-  {{ if eq .Section "writeups" }}
-    {{ if or .Params.platform .Params.difficulty .Params.os .Params.category .Params.tools }}
+  {{ if in (slice "writeups" "challenges") .Section }}
+    {{ if or .Params.platform .Params.difficulty .Params.os .Params.category .Params.track .Params.tools .Params.stack .Params.delivery .Params.repo }}
     <dl class="facts reveal" style="--d:100ms">
       {{ with .Params.platform }}<div><dt>Platform</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.track }}<div><dt>Track</dt><dd>{{ . }}</dd></div>{{ end }}
       {{ with .Params.difficulty }}<div><dt>Difficulty</dt><dd><span class="tag diff d-{{ . | lower }}">{{ . }}</span></dd></div>{{ end }}
       {{ with .Params.os }}<div><dt>OS</dt><dd>{{ . }}</dd></div>{{ end }}
       {{ with .Params.category }}<div><dt>Category</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.stack }}<div class="wide"><dt>Stack</dt><dd>{{ delimit . ", " }}</dd></div>{{ end }}
       {{ with .Params.tools }}<div class="wide"><dt>Tools</dt><dd>{{ delimit . ", " }}</dd></div>{{ end }}
+      {{ with .Params.delivery }}<div class="wide"><dt>Delivery</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.repo }}<div class="wide"><dt>Source</dt><dd><a href="{{ . }}" target="_blank" rel="noopener">View on GitHub</a></dd></div>{{ end }}
     </dl>
     {{ end }}
-    <p class="note reveal" style="--d:120ms"><strong>Spoilers ahead.</strong> This is a full walkthrough. Try the challenge yourself first, and only read on for a hint or to compare notes.</p>
+    {{ if eq .Section "writeups" }}<p class="note reveal" style="--d:120ms"><strong>Spoilers ahead.</strong> This is a full walkthrough. Try the challenge yourself first, and only read on for a hint or to compare notes.</p>{{ end }}
   {{ end }}
 
   {{ if and $isPost (ne .Params.toc false) (gt .WordCount 350) (gt (len .TableOfContents) 90) }}
@@ -29,7 +33,7 @@
 
   <div class="content">{{ .Content }}</div>
 
-  {{ if $isPost }}
+  {{ if and $isPost (ne .Section "challenges") }}
   {{ $all := (where site.RegularPages "Section" .Section).ByDate }}
   {{ $cur := . }}
   {{ range $i, $p := $all }}{{ if eq $p.Permalink $cur.Permalink }}

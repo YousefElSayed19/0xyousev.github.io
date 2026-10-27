@@ -1,0 +1,6 @@
+{{ define "main" }}
+<h1 class="reveal">{{ .Title }}</h1>
+{{ with .Description }}<p class="sub reveal" style="--d:60ms">{{ . }}</p>{{ end }}
+<div class="content reveal" style="--d:100ms">{{ .Content }}</div>
+{{ partial "challengecards.html" . }}
+{{ end }}

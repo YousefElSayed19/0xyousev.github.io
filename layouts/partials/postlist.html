@@ -3,7 +3,7 @@
   <li class="reveal" style="--d:{{ mul (math.Min $i 6) 50 }}ms" data-tags="{{ delimit ($p.Params.tags | default slice) "," }}">
     <div class="row">
       <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "2 Jan 2006" }}</time>
-      <span class="tag kind">{{ if eq $p.Section "writeups" }}write-up{{ else if eq $p.Section "cheatsheets" }}cheatsheet{{ else }}blog{{ end }}</span>
+      <span class="tag kind">{{ if eq $p.Section "writeups" }}write-up{{ else if eq $p.Section "cheatsheets" }}cheatsheet{{ else if eq $p.Section "challenges" }}challenge{{ else }}blog{{ end }}</span>
       {{ with $p.Params.difficulty }}<span class="tag diff d-{{ . | lower }}">{{ . }}</span>{{ end }}
       {{ with $p.Params.platform }}<span class="tag">{{ . }}</span>{{ end }}
       <span class="rt">{{ $p.ReadingTime }} min read</span>

@@ -3,7 +3,7 @@
 <p class="sub reveal" style="--d:60ms">Everything on the site, grouped by topic.</p>
 <div class="tagcloud">
   {{ range $i, $t := .Data.Terms.Alphabetical }}
-  <a class="tagcard reveal" style="--d:{{ mul (math.Min $i 8) 40 }}ms" href="{{ $t.Page.RelPermalink }}">#{{ $t.Page.LinkTitle }} <span>{{ $t.Count }}</span></a>
+  <a class="tagcard reveal" style="--d:{{ mul (math.Min $i 8) 40 }}ms" href="{{ $t.Page.RelPermalink }}">#{{ ($t.Page.LinkTitle | lower) }} <span>{{ $t.Count }}</span></a>
   {{ end }}
 </div>
 {{ end }}
