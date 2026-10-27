@@ -1,16 +1,37 @@
 {{ define "main" }}
 <section class="intro">
-  {{ with site.Params.avatar }}<img class="avatar" src="{{ . | relURL }}" alt="" width="96" height="96">{{ end }}
-  <h1>{{ site.Params.name }}</h1>
-  <p class="tagline">{{ site.Params.tagline }}</p>
-  {{ .Content }}
+  <div class="hero">
+    {{ with site.Params.avatar }}<img class="avatar" src="{{ . | relURL }}" alt="Portrait of {{ site.Params.name }}" width="96" height="96">{{ end }}
+    <div>
+      <h1>{{ site.Params.name }}</h1>
+      <p class="tagline">{{ site.Params.tagline }}</p>
+      <p class="where">{{ site.Params.location }}{{ with site.Params.status }} · {{ . }}{{ end }}</p>
+    </div>
+  </div>
+  <div class="lead">{{ .Content }}</div>
+  {{ with site.Data.home.highlights }}
+  <ul class="badges">
+    {{ range . }}<li><strong>{{ .label }}</strong>{{ .text }}</li>{{ end }}
+  </ul>
+  {{ end }}
 </section>
+
+{{ with site.Data.home.focus }}
+<section>
+  <h2>What I work on</h2>
+  <div class="cards">
+    {{ range . }}<article class="card"><h3>{{ .title }}</h3><p>{{ .text }}</p></article>{{ end }}
+  </div>
+  <p><a href="{{ "about/" | relURL }}">More about me</a> · <a href="{{ "projects/" | relURL }}">Projects</a></p>
+</section>
+{{ end }}
+
 <section>
   <h2>Recent writing</h2>
   {{ $posts := where site.RegularPages "Section" "in" (slice "writeups" "blogs") }}
   {{ with $posts.ByDate.Reverse }}
     {{ partial "postlist.html" (first 5 .) }}
-    <p><a href="{{ "writeups/" | relURL }}">All write-ups</a></p>
+    <p><a href="{{ "writeups/" | relURL }}">All write-ups</a> · <a href="{{ "blogs/" | relURL }}">Blog</a> · <a href="{{ "index.xml" | relURL }}">RSS</a></p>
   {{ else }}
     <p class="empty">No posts yet. Add a Markdown file to content/writeups to publish the first one.</p>
   {{ end }}

@@ -1,0 +1,5 @@
+<article class="card">
+  <h3>{{ with .Get "url" }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $.Get "name" }}</a>{{ else }}{{ .Get "name" }}{{ end }}</h3>
+  {{ with trim .Inner "\n " }}<div class="desc">{{ . | markdownify }}</div>{{ end }}
+  {{ with .Get "tags" }}<ul class="chips small">{{ range split . "," }}<li>{{ trim . " " }}</li>{{ end }}</ul>{{ end }}
+</article>

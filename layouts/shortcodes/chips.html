@@ -1,0 +1,2 @@
+{{- $items := split (.Get 0) "," -}}
+<ul class="chips">{{ range $items }}<li>{{ trim . " " }}</li>{{ end }}</ul>

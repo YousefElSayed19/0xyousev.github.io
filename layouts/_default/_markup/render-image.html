@@ -1,0 +1,3 @@
+{{- $dest := .Destination -}}
+{{- if hasPrefix $dest "/" }}{{ $dest = $dest | relURL }}{{ end -}}
+<img src="{{ $dest | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy">

@@ -1,0 +1,25 @@
+highlights:
+  - label: TryHackMe
+    text: Top 1%
+  - label: CTF design
+    text: Hard-rated challenge across REST, GraphQL and gRPC
+  - label: OpenLabs
+    text: Submitted the VaultCorp SSRF-to-RCE web lab
+
+focus:
+  - title: Web and API
+    text: OWASP Top 10 and API Top 10 testing across REST, GraphQL and gRPC. XSS, SQLi, IDOR, SSRF, CSRF, command injection and business logic flaws.
+  - title: Mobile
+    text: Android testing and APK reverse engineering with JADX, Apktool, Frida, MobSF and apk-mitm.
+  - title: Active Directory
+    text: Enumeration, Kerberos attacks, BloodHound and privilege escalation.
+  - title: Cloud
+    text: AWS security testing across S3, IAM and EC2, plus cloud misconfiguration assessment.
+  - title: AI and LLM
+    text: Prompt injection testing, guided by the OWASP Top 10 for LLM Applications.
+  - title: Network
+    text: Port scanning, enumeration and network penetration testing.
+  - title: Reverse engineering
+    text: Native binaries and APKs, with Ghidra, JADX and a working knowledge of Assembly.
+  - title: CTF challenge design
+    text: Realistic challenges built around practical, multi-stage attack chains.

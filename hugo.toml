@@ -1,4 +1,5 @@
-baseURL = "https://yousefelsayed19.github.io/"
+# The deploy workflow overrides this with the real Pages URL, so it only matters for local builds.
+baseURL = "https://yousefelsayed19.github.io/0xyousev.github.io/"
 languageCode = "en"
 title = "Yousef ElSayed"
 enableRobotsTXT = true
@@ -8,8 +9,12 @@ disableKinds = ["taxonomy", "term"]
   name = "Yousef ElSayed"
   handle = "0xyousev"
   tagline = "Penetration tester. I write down what I break and what I learn."
-  description = "Write-ups, projects and notes from Yousef ElSayed, a penetration tester and CTF creator."
+  description = "Write-ups, projects and notes from Yousef ElSayed, a penetration tester and CTF creator from Cairo, Egypt."
+  location = "Cairo, Egypt"
+  status = "Networks & Network Security student, class of 2027"
   avatar = "avatar.webp"
+  ogimage = "og.jpg"
+  # cv = "Yousef_ElSayed_CV.pdf"   # drop the PDF in /static and uncomment to show a download link
 
   [[params.socials]]
     name = "GitHub"
@@ -27,19 +32,19 @@ disableKinds = ["taxonomy", "term"]
 [menus]
   [[menus.main]]
     name = "Writeups"
-    url = "/writeups/"
+    pageRef = "/writeups"
     weight = 1
   [[menus.main]]
     name = "Blog"
-    url = "/blogs/"
+    pageRef = "/blogs"
     weight = 2
   [[menus.main]]
     name = "Projects"
-    url = "/projects/"
+    pageRef = "/projects"
     weight = 3
   [[menus.main]]
     name = "About"
-    url = "/about/"
+    pageRef = "/about"
     weight = 4
 
 [markup.highlight]

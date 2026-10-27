@@ -1,0 +1,9 @@
+{{ define "main" }}
+<h1>Page not found</h1>
+<p>That page doesn't exist, or it moved. Try one of these instead:</p>
+<ul>
+  <li><a href="{{ "/" | relURL }}">Home</a></li>
+  <li><a href="{{ "writeups/" | relURL }}">Write-ups</a></li>
+  <li><a href="{{ "projects/" | relURL }}">Projects</a></li>
+</ul>
+{{ end }}

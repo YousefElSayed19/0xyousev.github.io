@@ -1,7 +1,7 @@
 <ul class="posts">
 {{ range . }}
   <li>
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}<span class="tag">{{ if eq .Section "writeups" }}write-up{{ else }}blog{{ end }}</span></time>
     <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     {{ with .Description }}<p>{{ . }}</p>{{ end }}
   </li>
