@@ -22,17 +22,17 @@ I play CTFs across web, network, mobile and API security, and I design them too.
 
 On TryHackMe I'm in the top 1%. My handle is `0xyousev` on both TryHackMe and Hack The Box.
 
-## Training
+## Training and education
 
-- **Penetration Testing Intern**, ZeroSploit, in collaboration with ITI
-- **Penetration Testing Intern**, Duckurity
-
-## Education
-
-**Cairo New Technological University**, New Cairo (Fifth Settlement), Egypt.
-Faculty of Industry and Energy Technology, Networks & Network Security. October 2023 to expected June 2027.
-
-Specialization coursework: CCNA Routing & Switching I to IV, CCNP Route & Switch, CCNA Security and CCNA Cybersecurity Operations.
+{{< timeline >}}
+{{< event date="Oct 2023 to Jun 2027 (expected)" title="Networks & Network Security" where="Cairo New Technological University, New Cairo (Fifth Settlement)" >}}
+Faculty of Industry and Energy Technology. Specialization coursework: CCNA Routing & Switching I to IV, CCNP Route & Switch, CCNA Security and CCNA Cybersecurity Operations.
+{{< /event >}}
+{{< event title="Penetration Testing Intern" where="Duckurity" >}}
+Hands-on penetration testing, and lab contributions to [duckurity/openlabs](https://github.com/duckurity/openlabs).
+{{< /event >}}
+{{< event title="Penetration Testing Intern" where="ZeroSploit, in collaboration with ITI" >}}{{< /event >}}
+{{< /timeline >}}
 
 ## Skills
 

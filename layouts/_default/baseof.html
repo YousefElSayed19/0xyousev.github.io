@@ -16,19 +16,34 @@
 {{ if ne .Kind "404" }}<meta property="og:url" content="{{ .Permalink }}">{{ end }}
 <meta property="og:image" content="{{ $img }}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1013" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)">
 {{ with site.Home.OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">{{ end }}
-<script>(function(){try{var t=localStorage.getItem("theme");if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}})();</script>
+{{ if .IsHome }}
+{{ $same := slice }}{{ range site.Params.socials }}{{ $same = $same | append .url }}{{ end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "Person" "name" site.Params.name "alternateName" site.Params.handle "url" site.Home.Permalink "image" $img "jobTitle" "Penetration Tester" "address" (dict "@type" "PostalAddress" "addressLocality" "Cairo" "addressCountry" "EG") "sameAs" $same | jsonify | safeJS }}</script>
+{{ end }}
+<script>(function(){var d=document.documentElement;d.classList.add("js");try{var t=localStorage.getItem("theme");if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.dataset.theme=t}catch(e){}})();</script>
 <link rel="icon" type="image/png" href="{{ "favicon.png" | relURL }}">
 <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
-<body>
+<body data-index="{{ "index.json" | relURL }}">
 <a class="skip" href="#main">Skip to content</a>
+{{ if .IsPage }}<div id="progress" aria-hidden="true"></div>{{ end }}
 {{ partial "header.html" . }}
 <main id="main">{{ block "main" . }}{{ end }}</main>
 {{ partial "footer.html" . }}
+<div id="search" class="search" hidden role="dialog" aria-modal="true" aria-label="Search the site">
+  <div class="search-box">
+    <input id="q" type="search" placeholder="Search write-ups, posts and notes" autocomplete="off" spellcheck="false" aria-label="Search" aria-controls="results">
+    <ul id="results" role="listbox" aria-label="Results"></ul>
+    <p class="hint"><kbd>↑</kbd> <kbd>↓</kbd> to move, <kbd>Enter</kbd> to open, <kbd>Esc</kbd> to close</p>
+  </div>
+</div>
+<button id="totop" type="button" aria-label="Back to top" hidden>↑</button>
 <script src="{{ "js/theme.js" | relURL }}"></script>
+<script src="{{ "js/site.js" | relURL }}" defer></script>
+<script src="{{ "js/search.js" | relURL }}" defer></script>
 </body>
 </html>

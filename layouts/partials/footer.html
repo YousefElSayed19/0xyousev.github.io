@@ -2,6 +2,8 @@
   <ul class="socials">
     {{ range site.Params.socials }}<li><a href="{{ .url }}" rel="me noopener" target="_blank">{{ .name }}</a></li>{{ end }}
     {{ with site.Home.OutputFormats.Get "RSS" }}<li><a href="{{ .RelPermalink }}">RSS</a></li>{{ end }}
+    <li><a href="{{ "tags/" | relURL }}">Tags</a></li>
   </ul>
+  <p class="legal">Everything here comes from CTFs, labs and systems I'm authorized to test. Only test what you have permission to test.</p>
   <p>&copy; {{ now.Year }} {{ site.Params.name }}</p>
 </footer>

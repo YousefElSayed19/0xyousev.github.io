@@ -1,0 +1,6 @@
+<li class="reveal">
+  {{ with .Get "date" }}<span class="when">{{ . }}</span>{{ end }}
+  <h3>{{ .Get "title" }}</h3>
+  {{ with .Get "where" }}<p class="where-at">{{ . }}</p>{{ end }}
+  {{ with trim .Inner "\n " }}<div class="desc">{{ . | markdownify }}</div>{{ end }}
+</li>

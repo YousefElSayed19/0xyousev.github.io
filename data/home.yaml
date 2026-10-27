@@ -1,3 +1,13 @@
+terminal:
+  - cmd: whoami
+    out: yousef (0xyousev), penetration tester
+  - cmd: cat focus.txt
+    out: web | api | mobile | active-directory | cloud | llm
+  - cmd: ls ~/challenges
+    out: rest-graphql-grpc/  vaultcorp-ssrf-to-rce/
+  - cmd: echo $STATUS
+    out: breaking things, writing them down
+
 highlights:
   - label: TryHackMe
     text: Top 1%

@@ -1,5 +1,8 @@
 document.getElementById("theme-toggle").addEventListener("click", function () {
-  var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = next;
+  var root = document.documentElement;
+  var next = root.dataset.theme === "dark" ? "light" : "dark";
+  root.classList.add("theming");
+  root.dataset.theme = next;
   try { localStorage.setItem("theme", next); } catch (e) {}
+  setTimeout(function () { root.classList.remove("theming"); }, 450);
 });

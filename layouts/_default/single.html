@@ -1,9 +1,50 @@
 {{ define "main" }}
+{{ $isPost := in (slice "writeups" "blogs" "cheatsheets") .Section }}
 <article>
-  <h1>{{ .Title }}</h1>
-  {{ if in (slice "writeups" "blogs") .Section }}
-  <p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>{{ range .Params.tags }} <span class="tag">{{ . }}</span>{{ end }}</p>
+  <h1 class="reveal">{{ .Title }}</h1>
+  {{ if $isPost }}
+  <p class="meta reveal" style="--d:60ms">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ if eq .Section "cheatsheets" }}Updated {{ end }}{{ .Date.Format "2 Jan 2006" }}</time>
+    <span>{{ .ReadingTime }} min read</span><span>{{ .WordCount }} words</span>
+    {{ range .GetTerms "tags" }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+  </p>
   {{ end }}
+
+  {{ if eq .Section "writeups" }}
+    {{ if or .Params.platform .Params.difficulty .Params.os .Params.category .Params.tools }}
+    <dl class="facts reveal" style="--d:100ms">
+      {{ with .Params.platform }}<div><dt>Platform</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.difficulty }}<div><dt>Difficulty</dt><dd><span class="tag diff d-{{ . | lower }}">{{ . }}</span></dd></div>{{ end }}
+      {{ with .Params.os }}<div><dt>OS</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.category }}<div><dt>Category</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.tools }}<div class="wide"><dt>Tools</dt><dd>{{ delimit . ", " }}</dd></div>{{ end }}
+    </dl>
+    {{ end }}
+    <p class="note reveal" style="--d:120ms"><strong>Spoilers ahead.</strong> This is a full walkthrough. Try the challenge yourself first, and only read on for a hint or to compare notes.</p>
+  {{ end }}
+
+  {{ if and $isPost (ne .Params.toc false) (gt .WordCount 350) (gt (len .TableOfContents) 90) }}
+  <details class="toc" open><summary>On this page</summary>{{ .TableOfContents }}</details>
+  {{ end }}
+
   <div class="content">{{ .Content }}</div>
+
+  {{ if $isPost }}
+  {{ $all := (where site.RegularPages "Section" .Section).ByDate }}
+  {{ $cur := . }}
+  {{ range $i, $p := $all }}{{ if eq $p.Permalink $cur.Permalink }}
+    {{ if gt $i 0 }}{{ $.Store.Set "older" (index $all (sub $i 1)) }}{{ end }}
+    {{ if lt (add $i 1) (len $all) }}{{ $.Store.Set "newer" (index $all (add $i 1)) }}{{ end }}
+  {{ end }}{{ end }}
+  {{ $older := $.Store.Get "older" }}{{ $newer := $.Store.Get "newer" }}
+  {{ if or $older $newer }}
+  <nav class="pager" aria-label="More in {{ .Section }}">
+    {{ with $older }}<a class="prev" href="{{ .RelPermalink }}"><small>Older</small>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{ with $newer }}<a class="next" href="{{ .RelPermalink }}"><small>Newer</small>{{ .Title }}</a>{{ end }}
+  </nav>
+  {{ end }}
+  {{ end }}
+
+  {{ with .File }}{{ if $isPost }}<p class="edit"><a href="{{ site.Params.repo }}/edit/main/content/{{ .Path }}" target="_blank" rel="noopener">Spotted a mistake? Edit this page on GitHub</a></p>{{ end }}{{ end }}
 </article>
 {{ end }}

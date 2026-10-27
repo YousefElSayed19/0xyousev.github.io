@@ -1,9 +1,14 @@
-# The deploy workflow overrides this with the real Pages URL, so it only matters for local builds.
+# The deploy workflow overrides baseURL with the real Pages URL, so this only matters for local builds.
 baseURL = "https://yousefelsayed19.github.io/0xyousev.github.io/"
 languageCode = "en"
 title = "Yousef ElSayed"
 enableRobotsTXT = true
-disableKinds = ["taxonomy", "term"]
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 
 [params]
   name = "Yousef ElSayed"
@@ -14,6 +19,7 @@ disableKinds = ["taxonomy", "term"]
   status = "Networks & Network Security student, class of 2027"
   avatar = "avatar.webp"
   ogimage = "og.jpg"
+  repo = "https://github.com/YousefElSayed19/0xyousev.github.io"
   # cv = "Yousef_ElSayed_CV.pdf"   # drop the PDF in /static and uncomment to show a download link
 
   [[params.socials]]
@@ -39,14 +45,21 @@ disableKinds = ["taxonomy", "term"]
     pageRef = "/blogs"
     weight = 2
   [[menus.main]]
+    name = "Cheatsheets"
+    pageRef = "/cheatsheets"
+    weight = 3
+  [[menus.main]]
     name = "Projects"
     pageRef = "/projects"
-    weight = 3
+    weight = 4
   [[menus.main]]
     name = "About"
     pageRef = "/about"
-    weight = 4
+    weight = 5
 
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
 [markup.highlight]
   noClasses = true
   style = "dracula"

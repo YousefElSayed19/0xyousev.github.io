@@ -1,8 +1,20 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
+<h1 class="reveal">{{ if eq .Kind "term" }}<span class="hash">#</span>{{ .Title }}{{ else }}{{ .Title }}{{ end }}</h1>
+{{ with .Description }}<p class="sub reveal" style="--d:60ms">{{ . }}</p>{{ end }}
 {{ .Content }}
-{{ with .Pages.ByDate.Reverse }}
-  {{ partial "postlist.html" . }}
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ if $pages }}
+  {{ $tags := slice }}
+  {{ range $pages }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
+  {{ $tags = $tags | uniq | sort }}
+  {{ if and (eq .Kind "section") (ge (len $pages) 3) (gt (len $tags) 1) }}
+  <div class="filters reveal" role="group" aria-label="Filter by tag">
+    <button type="button" class="chip-btn on" data-tag="">All <span>{{ len $pages }}</span></button>
+    {{ range $tags }}<button type="button" class="chip-btn" data-tag="{{ . }}">{{ . }}</button>{{ end }}
+  </div>
+  {{ end }}
+  {{ partial "postlist.html" $pages }}
+  <p class="empty" id="no-match" hidden>No posts with that tag yet.</p>
 {{ else }}
   <p class="empty">Nothing here yet.</p>
 {{ end }}

@@ -1,0 +1,5 @@
+{{ define "main" }}
+<h1 class="reveal"><span class="hash">#</span>{{ .Title }}</h1>
+<p class="sub reveal" style="--d:60ms">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }} · <a href="{{ "tags/" | relURL }}">all tags</a></p>
+{{ partial "postlist.html" .Pages.ByDate.Reverse }}
+{{ end }}

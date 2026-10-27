@@ -1,37 +1,51 @@
 {{ define "main" }}
 <section class="intro">
   <div class="hero">
-    {{ with site.Params.avatar }}<img class="avatar" src="{{ . | relURL }}" alt="Portrait of {{ site.Params.name }}" width="96" height="96">{{ end }}
+    {{ with site.Params.avatar }}<span class="ring reveal"><img class="avatar" src="{{ . | relURL }}" alt="Portrait of {{ site.Params.name }}" width="96" height="96"></span>{{ end }}
     <div>
-      <h1>{{ site.Params.name }}</h1>
-      <p class="tagline">{{ site.Params.tagline }}</p>
-      <p class="where">{{ site.Params.location }}{{ with site.Params.status }} · {{ . }}{{ end }}</p>
+      <h1 class="reveal" style="--d:80ms">{{ site.Params.name }}</h1>
+      <p class="tagline reveal" style="--d:140ms">{{ site.Params.tagline }}</p>
+      <p class="where reveal" style="--d:200ms">{{ site.Params.location }}{{ with site.Params.status }} · {{ . }}{{ end }}</p>
     </div>
   </div>
-  <div class="lead">{{ .Content }}</div>
+
+  {{ with site.Data.home.terminal }}
+  <div class="term reveal" style="--d:240ms">
+    <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><b>{{ site.Params.handle }}@lab:~</b></div>
+    <div class="term-body" aria-hidden="true">
+      {{ range . }}<div class="tl"><span class="p">$</span> <span class="c">{{ .cmd }}</span></div>
+      <div class="to">{{ .out }}</div>
+      {{ end }}
+    </div>
+    <p class="sr-only">{{ range . }}{{ .out }}. {{ end }}</p>
+  </div>
+  {{ end }}
+
+  <div class="lead reveal" style="--d:280ms">{{ .Content }}</div>
+
   {{ with site.Data.home.highlights }}
   <ul class="badges">
-    {{ range . }}<li><strong>{{ .label }}</strong>{{ .text }}</li>{{ end }}
+    {{ range $i, $e := . }}<li class="reveal" style="--d:{{ mul $i 80 }}ms"><strong>{{ .label }}</strong>{{ .text }}</li>{{ end }}
   </ul>
   {{ end }}
 </section>
 
 {{ with site.Data.home.focus }}
 <section>
-  <h2>What I work on</h2>
+  <h2 class="reveal">What I work on</h2>
   <div class="cards">
-    {{ range . }}<article class="card"><h3>{{ .title }}</h3><p>{{ .text }}</p></article>{{ end }}
+    {{ range $i, $e := . }}<article class="card reveal" style="--d:{{ mul (math.Min $i 5) 60 }}ms"><h3>{{ .title }}</h3><p>{{ .text }}</p></article>{{ end }}
   </div>
-  <p><a href="{{ "about/" | relURL }}">More about me</a> · <a href="{{ "projects/" | relURL }}">Projects</a></p>
+  <p class="reveal"><a href="{{ "about/" | relURL }}">More about me</a> · <a href="{{ "projects/" | relURL }}">Projects</a></p>
 </section>
 {{ end }}
 
 <section>
-  <h2>Recent writing</h2>
-  {{ $posts := where site.RegularPages "Section" "in" (slice "writeups" "blogs") }}
+  <h2 class="reveal">Latest writing</h2>
+  {{ $posts := where site.RegularPages "Section" "in" (slice "writeups" "blogs" "cheatsheets") }}
   {{ with $posts.ByDate.Reverse }}
     {{ partial "postlist.html" (first 5 .) }}
-    <p><a href="{{ "writeups/" | relURL }}">All write-ups</a> · <a href="{{ "blogs/" | relURL }}">Blog</a> · <a href="{{ "index.xml" | relURL }}">RSS</a></p>
+    <p class="reveal"><a href="{{ "writeups/" | relURL }}">All write-ups</a> · <a href="{{ "blogs/" | relURL }}">Blog</a> · <a href="{{ "cheatsheets/" | relURL }}">Cheatsheets</a> · <a href="{{ "index.xml" | relURL }}">RSS</a></p>
   {{ else }}
     <p class="empty">No posts yet. Add a Markdown file to content/writeups to publish the first one.</p>
   {{ end }}

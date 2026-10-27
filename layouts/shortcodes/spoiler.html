@@ -1,0 +1,4 @@
+<details class="spoiler">
+  <summary>{{ .Get "label" | default "Reveal (spoiler)" }}</summary>
+  <div>{{ .Inner | markdownify }}</div>
+</details>
