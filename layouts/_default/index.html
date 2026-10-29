@@ -3,7 +3,7 @@
   <div class="hero">
     {{ with site.Params.avatar }}<span class="ring reveal"><img class="avatar" src="{{ . | relURL }}" alt="Portrait of {{ site.Params.name }}" width="96" height="96"></span>{{ end }}
     <div>
-      <h1 class="reveal" style="--d:80ms">{{ site.Params.name }}</h1>
+      <h1 class="reveal" style="--d:80ms"><span class="shine">{{ site.Params.name }}</span></h1>
       <p class="tagline reveal" style="--d:140ms">{{ site.Params.tagline }}</p>
       <p class="where reveal" style="--d:200ms">{{ site.Params.location }}{{ with site.Params.status }} · {{ . }}{{ end }}</p>
     </div>

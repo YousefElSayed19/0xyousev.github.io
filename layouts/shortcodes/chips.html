@@ -1,2 +1,2 @@
 {{- $items := split (.Get 0) "," -}}
-<ul class="chips">{{ range $items }}<li>{{ trim . " " }}</li>{{ end }}</ul>
+<ul class="chips">{{ range $i, $e := $items }}<li class="reveal" style="--d:{{ mul (math.Min $i 14) 28 }}ms">{{ trim . " " }}</li>{{ end }}</ul>

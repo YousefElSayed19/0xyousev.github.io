@@ -34,6 +34,7 @@
 {{ partial "header.html" . }}
 <main id="main">{{ block "main" . }}{{ end }}</main>
 {{ partial "footer.html" . }}
+<div id="glow" aria-hidden="true"></div>
 <div id="search" class="search" hidden role="dialog" aria-modal="true" aria-label="Search the site">
   <div class="search-box">
     <input id="q" type="search" placeholder="Search write-ups, posts and notes" autocomplete="off" spellcheck="false" aria-label="Search" aria-controls="results">

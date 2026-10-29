@@ -53,7 +53,7 @@ Short description in Markdown.
 
 ## Motion
 
-Scroll reveals, the typing terminal, card glow, page transitions and the avatar ring are all disabled automatically for visitors who ask their system for reduced motion, and the page works without JavaScript.
+Scroll reveals, the typing terminal, card glow and tilt, the cursor-following green glow, click ripples, the shimmering name, the blurred sticky header, page transitions and the avatar ring are all disabled automatically for visitors who ask their system for reduced motion, and the page works without JavaScript.
 
 ## CV download
 
