@@ -90,8 +90,8 @@
     var tick = function () {
       gx += (tx - gx) * 0.14; gy += (ty - gy) * 0.14;
       glow.style.transform = "translate3d(" + gx.toFixed(1) + "px," + gy.toFixed(1) + "px,0)";
-      glow.style.setProperty("--bx", ((((380 - gx) % 28) + 28) % 28).toFixed(1) + "px");
-      glow.style.setProperty("--by", ((((380 - gy) % 28) + 28) % 28).toFixed(1) + "px");
+      glow.style.setProperty("--bx", ((((190 - gx) % 22) + 22) % 22).toFixed(1) + "px");
+      glow.style.setProperty("--by", ((((190 - gy) % 22) + 22) % 22).toFixed(1) + "px");
       raf = (Math.abs(tx - gx) > 0.3 || Math.abs(ty - gy) > 0.3) ? requestAnimationFrame(tick) : 0;
     };
     addEventListener("pointermove", function (e) {
@@ -211,5 +211,20 @@
       });
       if (none) none.hidden = shown > 0;
     });
+  }
+
+  /* ---- burger menu ---- */
+  var mBtn = $("#menu-btn"), menu = $("#menu"), mClose = $("#menu-close");
+  if (mBtn && menu) {
+    var mOpen = function (on) {
+      menu.hidden = !on; mBtn.setAttribute("aria-expanded", on ? "true" : "false");
+      document.documentElement.style.overflow = on ? "hidden" : "";
+      if (on) { var f = menu.querySelector("a"); if (f) f.focus(); } else mBtn.focus();
+    };
+    mBtn.addEventListener("click", function () { mOpen(true); });
+    mClose.addEventListener("click", function () { mOpen(false); });
+    menu.addEventListener("click", function (e) { if (e.target === menu || e.target.closest("a")) mOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) mOpen(false); });
+    matchMedia("(min-width:44.01rem)").addEventListener("change", function (m) { if (m.matches && !menu.hidden) mOpen(false); });
   }
 })();
