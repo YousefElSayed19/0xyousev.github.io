@@ -302,3 +302,17 @@ pre{scrollbar-width:thin}
 }
 @media print{#menu-btn,.menu{display:none}}
 html{overflow-x:clip}
+
+@keyframes fadeout{to{opacity:0}}
+@keyframes popout{to{opacity:0;transform:translateY(-8px) scale(.97)}}
+@keyframes sink{to{opacity:0;translate:0 -8px}}
+@media (prefers-reduced-motion:no-preference){
+  .menu.closing{animation:fadeout .22s ease both!important}
+  .menu.closing .menu-box{animation:popout .22s cubic-bezier(.4,0,1,1) both!important}
+  .menu.closing li{animation:sink .18s ease both!important;animation-delay:calc((4 - var(--i))*20ms)!important}
+  .menu li a{transition:background .2s,color .2s,transform .2s}
+  .menu li a:hover{transform:translateX(4px)}
+  .menu li a.go{background:var(--acc-soft);color:var(--acc);transform:scale(1.06)}
+  #menu-btn svg{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  #menu-btn[aria-expanded="true"] svg{transform:rotate(90deg) scale(.85)}
+}
