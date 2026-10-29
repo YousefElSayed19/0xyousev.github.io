@@ -37,10 +37,10 @@
 <div id="glow" aria-hidden="true"></div>
 <div id="menu" class="menu" hidden role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-box">
-    <button id="menu-close" class="icon-btn menu-x" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <p class="menu-t"><b>$</b> cd ~/</p>
     <ul>{{ range $i, $m := site.Menus.main }}<li style="--i:{{ $i }}"><a href="{{ $m.URL }}"{{ if or ($.IsMenuCurrent "main" $m) ($.HasMenuCurrent "main" $m) }} aria-current="page"{{ end }}>{{ $m.Name }}</a></li>{{ end }}</ul>
   </div>
+  <button id="menu-close" class="menu-x" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
 </div>
 <div id="search" class="search" hidden role="dialog" aria-modal="true" aria-label="Search the site">
   <div class="search-box">
